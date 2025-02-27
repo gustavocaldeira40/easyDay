@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -9,7 +9,7 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: 'Arial', sans-serif;
-    background-color: #f0f0f0;
+    background-color:#fff;
     color: #333;
     font-size: 16px;
     line-height: 1.5;
