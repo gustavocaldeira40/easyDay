@@ -4,13 +4,11 @@ import NotFound from '../pages/NotFound';
 
 const MainRoutes = () => {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
+    <Routes>
+      <Route path="/" element={<Home />} />
 
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </Router>
+      <Route path="*" element={<NotFound />} />
+    </Routes>
   );
 };
 

@@ -2,6 +2,7 @@ import React from 'react';
 import HomeIcon from '@mui/icons-material/Home';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import { MenuItem, Container } from './style';
+import { useNavigate } from 'react-router-dom';
 
 const Sidebar: React.FC = () => {
   const themeMenu = {
@@ -11,19 +12,23 @@ const Sidebar: React.FC = () => {
     color: '#8A8F9E',
   };
 
+
+  const navigate = useNavigate();
+
+
   return (
     <Container>
       <MenuItem
         style={themeMenu}
         size="large"
-        onClick={() => alert('Home Clicked')}
+        onClick={() => navigate('/')}
       >
         <HomeIcon />
       </MenuItem>
       <MenuItem
         style={themeMenu}
         size="large"
-        onClick={() => alert('Calendar Clicked')}
+        onClick={() => navigate('/NotFound')}
       >
         <CalendarTodayIcon />
       </MenuItem>

@@ -7,19 +7,22 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
-  body {
-    font-family: 'Arial', sans-serif;
-    background-color:#fff;
-    color: #333;
-    font-size: 16px;
-    line-height: 1.5;
+  html, body {
+    height: 100%; 
+    font-family: ${(props) => props.theme.typography.fontFamily};
+    background-color: ${(props) => props.theme.colors.background};
+    color: ${(props) => props.theme.colors.text}; 
+    font-size: ${(props) => props.theme.typography.fontSize}; 
+    line-height: ${(props) => props.theme.typography.lineHeight}; }
+
+  #root {
+    height: 100%;
   }
 
   a {
     text-decoration: none;
     color: inherit;
   }
-
 `;
 
 export default GlobalStyle;

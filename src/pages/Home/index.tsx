@@ -1,11 +1,28 @@
 import React from 'react';
+
 import { theme } from '../../styles/theme';
+import DataPicker from '../../components/DataPicker';
+import { ContainerData, ContainerGlobal, ContainerRightSide } from './style';
+import FeedbackCard from '../../components/Cards/Feedback';
+import ScheduleTitle from '../../components/TitleSchedule';
+import TimeSchedule from '../../components/TimeSchedule';
 
 const Home: React.FC = () => {
   return (
-    <div>
-      <h1 style={{ color: theme.colors.title }}>First screen </h1>
-    </div>
+    <ContainerGlobal>
+      <ContainerData>
+
+        <DataPicker />
+        <FeedbackCard />
+      </ContainerData>
+
+      <ContainerRightSide>
+
+        <ScheduleTitle />
+
+        <TimeSchedule />
+      </ContainerRightSide>
+    </ContainerGlobal>
   );
 };
 

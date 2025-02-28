@@ -5,19 +5,19 @@ export const Container = styled.div`
   position: fixed;
   top: 0;
   left: 0;
-  width: 5vw;
+  width: 4vw;
   height: 100vh;
-  background-color: #f5f5f5;
+  background-color: #fff;
 
   border-radius: 0 20px 20px 0;
 
-  margin-right: 2vw;
+  /* margin-right: 3vw; */
 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding-top: 20vh;
+  padding-top: 10vh;
   box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.1);
 `;
 
