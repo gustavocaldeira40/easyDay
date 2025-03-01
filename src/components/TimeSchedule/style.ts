@@ -1,43 +1,47 @@
-
 import styled from 'styled-components';
-export const CalendarContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(7, 1fr); // 7 colunas (para 7 dias da semana)
+import { theme } from '../../styles/theme';
+
+export const ContainerGlobal = styled.div`
+  background-color: #fff;
+  margin: 10px 0;
+  overflow: hidden;
+`;
+
+export const TimeContainer = styled.div`
+  display: flex;
+  flex-direction: column;
   gap: 10px;
-  padding: 20px;
+  padding: 0 5px;
+  /* background-color: blue; */
+  overflow: hidden;
 `;
 
-export const DayCell = styled.div`
-  background-color: transparent; // Sem fundo
-  padding: 10px;
+export const TimeSlot = styled.div`
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+  border: 1px solid #dcdcdc;
+border-radius: 10px;
+overflow: hidden;
+`;
+
+export const TimeLabel = styled.div`
+  width: 60px;
   text-align: center;
-  cursor: pointer;
-  border-radius: 8px;
-  transition: background-color 0.3s;
-  font-weight: bold;
-
-  &:hover {
-    background-color: #90caf9; // Azul claro no hover
-  }
-`;
-
-export const TimeGrid = styled.div`
-  display: grid;
-  grid-template-columns: 1fr; // Apenas uma coluna para os horários
-  gap: 5px;
-  margin-top: 20px;
+  font-size: 14px;
+  color: #333;
 `;
 
 export const TimeCell = styled.div`
-  background-color: transparent; // Sem fundo
-  padding: 10px;
-  text-align: center;
+  flex: 1;
+  height: 60px;
+  background-color: #f4f4f4;
+  border-radius: 10px;
+  /* border: 1px solid #ddd; */
   cursor: pointer;
-  border-radius: 8px;
-  transition: background-color 0.3s;
-  border: 1px solid #ccc; // Apenas borda para destacar o horário
 
   &:hover {
-    background-color: #90caf9; // Azul claro no hover
+    background-color: ${theme.colors.hover};
+    transition: background-color 0.5s;
   }
 `;

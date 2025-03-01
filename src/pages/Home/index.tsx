@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { theme } from '../../styles/theme';
 import DataPicker from '../../components/DataPicker';
 import { ContainerData, ContainerGlobal, ContainerRightSide } from './style';
@@ -11,15 +10,12 @@ const Home: React.FC = () => {
   return (
     <ContainerGlobal>
       <ContainerData>
-
         <DataPicker />
         <FeedbackCard />
       </ContainerData>
 
       <ContainerRightSide>
-
         <ScheduleTitle />
-
         <TimeSchedule />
       </ContainerRightSide>
     </ContainerGlobal>

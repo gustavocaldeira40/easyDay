@@ -1,21 +1,24 @@
-import React, { useState, useEffect } from 'react';
-import dayjs from 'dayjs';
+import React, { useState } from 'react';
+import {
+  TimeSlot,
+  TimeContainer,
+  TimeLabel,
+  TimeCell,
+  ContainerGlobal,
+} from './style';
 import EventModal from '../Modal';
-import { CalendarContainer, DayCell, TimeCell, TimeGrid } from './style';
+import dayjs from 'dayjs';
+import WeeklyDays from '../WeeklyDays';
 
 const TimeSchedule: React.FC = () => {
-  const [selectedDate, setSelectedDate] = useState<string | null>(null);
-  const [openModal, setOpenModal] = useState<boolean>(false);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
-  const [timeSlots, setTimeSlots] = useState<string[]>([]);
+  const [openModal, setOpenModal] = useState<boolean>(false);
+  const [selectedDay, setSelectedDay] = useState<string | null>(null);
 
-  useEffect(() => {
-    // Gerar os horários de 8h às 18h
-    const slots = Array.from({ length: 11 }, (_, i) => `${8 + i}:00`);
-    setTimeSlots(slots);
-  }, []);
+  // Horários de 8h até 20h
+  const times = Array.from({ length: 13 }, (_, i) => `${8 + i}:00`);
 
-  // Função para abrir o modal
+  // Função para abrir o modal com o horário selecionado
   const openEventModal = (time: string) => {
     setSelectedTime(time);
     setOpenModal(true);
@@ -27,52 +30,28 @@ const TimeSchedule: React.FC = () => {
     setSelectedTime(null);
   };
 
-  // Gerar os dias do mês
-  const generateDaysOfMonth = () => {
-    const daysInMonth = dayjs().daysInMonth();
-    const startOfMonth = dayjs().startOf('month');
-
-    const days = [];
-    for (let i = 1; i <= daysInMonth; i++) {
-      days.push(startOfMonth.date(i).format('YYYY-MM-DD'));
-    }
-
-    return days;
-  };
-
   return (
-    <div>
-      {/* <h2>{dayjs().format('MMMM YYYY')}</h2>
-      <CalendarContainer>
-        {generateDaysOfMonth().map((day) => (
-          <DayCell key={day} onClick={() => setSelectedDate(day)}>
-            {dayjs(day).format('D')}
-          </DayCell>
+    <ContainerGlobal>
+      <WeeklyDays />
+
+      {/* Exibir os horários de 8h até 20h */}
+      <TimeContainer>
+        {times.map((time) => (
+          <TimeSlot key={time}>
+            <TimeLabel>{time}</TimeLabel>
+            <TimeCell onClick={() => openEventModal(time)} />
+          </TimeSlot>
         ))}
-      </CalendarContainer> */}
+      </TimeContainer>
 
-
-      <div>
-        {/* <h3>
-          Selecione o horário para {dayjs(selectedDate).format('D MMMM YYYY')}
-        </h3> */}
-        <TimeGrid>
-          {timeSlots.map((time) => (
-            <TimeCell key={time} onClick={() => openEventModal(time)}>
-              {time}
-            </TimeCell>
-          ))}
-        </TimeGrid>
-      </div>
-
-
+      {/* Modal para adicionar evento */}
       <EventModal
         open={openModal}
         onClose={closeEventModal}
         time={selectedTime}
-        date={selectedDate}
       />
-    </div>
+    </ContainerGlobal>
   );
 };
+
 export default TimeSchedule;

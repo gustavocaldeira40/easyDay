@@ -27,6 +27,15 @@ export const FilterContainer = styled.div`
   /* background-color: #f9f9f9; */
 `;
 
+export const LabelDate = styled.h2`
+  text-transform: uppercase;  
+  font-size: 20px;            
+  font-weight: bold;          
+  color: #333;                
+  text-align: center;         
+  /* padding: 10px;               */
+`;
+
 // Opções de filtro (Day, Week, Month)
 export const FilterOption = styled.button<{ selected: boolean }>`
   background-color: ${({ selected }) => (selected ? '#1565C0' : 'transparent')};

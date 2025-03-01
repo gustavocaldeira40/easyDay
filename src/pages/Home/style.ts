@@ -5,20 +5,23 @@ export const ContainerGlobal = styled.div`
   height: 100%;
   background-color: #f9f9f9;
   border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
 `;
 
 export const ContainerData = styled.div`
   display: flex;
-  max-width: 30vw;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-  flex: 1;
+  width: 27%;
+  box-sizing: border-box;
 `;
 
 export const ContainerRightSide = styled.div`
-  /* background-color: red; */
   padding: 0 20px 0 0;
-  width: 100%;
+  /* width: 70%; */
+  flex: 1;
+  box-sizing: border-box;
 `;

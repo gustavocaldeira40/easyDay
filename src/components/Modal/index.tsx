@@ -1,54 +1,45 @@
+// src/components/Modal/EventModal.tsx
 import React, { useState } from 'react';
-import { Modal, TextField, Button } from '@mui/material';
-import { EventModalContainer } from './style';
+import { ModalContainer, ModalContent, CloseButton, InputField, SubmitButton } from './style';
 
 interface EventModalProps {
   open: boolean;
   onClose: () => void;
   time: string | null;
-  date: string | null;
 }
 
-const EventModal: React.FC<EventModalProps> = ({ open, onClose, time, date }) => {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
+const EventModal: React.FC<EventModalProps> = ({ open, onClose, time }) => {
+  const [eventName, setEventName] = useState<string>('');
 
-  const handleSave = () => {
-    console.log(`Compromisso para ${date} às ${time}:`, { title, description });
-    onClose(); // Fechar o modal após salvar
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEventName(e.target.value);
   };
 
+  const handleSubmit = () => {
+    if (eventName) {
+      alert(`Evento '${eventName}' adicionado para o horário ${time}`);
+      onClose(); // Fecha o modal após adicionar o evento
+    } else {
+      alert('Por favor, insira um nome para o evento.');
+    }
+  };
+
+  if (!open) return null;
+
   return (
-    <Modal open={open} onClose={onClose}>
-      <EventModalContainer>
-        <h3>Adicionar Compromisso para {date} às {time}</h3>
-        <TextField
-          label="Título"
-          variant="outlined"
-          fullWidth
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
+    <ModalContainer>
+      <ModalContent>
+        <h3>Adicionar Evento para {time}</h3>
+        <InputField
+          type="text"
+          value={eventName}
+          onChange={handleInputChange}
+          placeholder="Nome do evento"
         />
-        <TextField
-          label="Descrição"
-          variant="outlined"
-          fullWidth
-          multiline
-          rows={4}
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          style={{ marginTop: 10 }}
-        />
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={handleSave}
-          style={{ marginTop: 10 }}
-        >
-          Salvar
-        </Button>
-      </EventModalContainer>
-    </Modal>
+        <SubmitButton onClick={handleSubmit}>Adicionar</SubmitButton>
+        <CloseButton onClick={onClose}>Fechar</CloseButton>
+      </ModalContent>
+    </ModalContainer>
   );
 };
 
