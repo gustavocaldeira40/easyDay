@@ -1,6 +1,15 @@
-// src/components/Modal/EventModal.tsx
 import React, { useState } from 'react';
-import { ModalContainer, ModalContent, CloseButton, InputField, SubmitButton } from './style';
+import {
+  ModalContainer,
+  ModalContent,
+  CloseButton,
+  InputField,
+  TextareaField,
+  SubmitButton,
+  ButtonCancel,
+  ButtonContainer, // Adicionando o container para os botões
+} from './style';
+import dayjs from 'dayjs';
 
 interface EventModalProps {
   open: boolean;
@@ -10,17 +19,46 @@ interface EventModalProps {
 
 const EventModal: React.FC<EventModalProps> = ({ open, onClose, time }) => {
   const [eventName, setEventName] = useState<string>('');
+  const [description, setDescription] = useState<string>('');
+  const [eventDate, setEventDate] = useState<string>('');
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEventName(e.target.value);
   };
 
+  const handleDescriptionChange = (
+    e: React.ChangeEvent<HTMLTextAreaElement>,
+  ) => {
+    setDescription(e.target.value);
+  };
+
+  const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEventDate(e.target.value);
+  };
+
   const handleSubmit = () => {
-    if (eventName) {
+    if (eventName && description && eventDate) {
+      const newEvent = {
+        title: eventName,
+        description,
+        date: eventDate,
+        time,
+      };
+
+      // Salvar no localStorage
+      const storedEvents = JSON.parse(localStorage.getItem('events') || '[]');
+      storedEvents.push(newEvent);
+      localStorage.setItem('events', JSON.stringify(storedEvents));
+
       alert(`Evento '${eventName}' adicionado para o horário ${time}`);
-      onClose(); // Fecha o modal após adicionar o evento
+      onClose();
+
+      // Limpar os campos
+      setEventName('');
+      setDescription('');
+      setEventDate('');
     } else {
-      alert('Por favor, insira um nome para o evento.');
+      alert('Por favor, preencha todos os campos.');
     }
   };
 
@@ -34,10 +72,19 @@ const EventModal: React.FC<EventModalProps> = ({ open, onClose, time }) => {
           type="text"
           value={eventName}
           onChange={handleInputChange}
-          placeholder="Nome do evento"
+          placeholder="Nome do Evento"
         />
-        <SubmitButton onClick={handleSubmit}>Adicionar</SubmitButton>
-        <CloseButton onClick={onClose}>Fechar</CloseButton>
+        <TextareaField
+          value={description}
+          onChange={handleDescriptionChange}
+          placeholder="Descrição"
+        />
+        <InputField type="date" value={eventDate} onChange={handleDateChange} />
+
+        <ButtonContainer>
+          <ButtonCancel onClick={onClose}>Cancelar</ButtonCancel>
+          <SubmitButton onClick={handleSubmit}>Salvar</SubmitButton>
+        </ButtonContainer>
       </ModalContent>
     </ModalContainer>
   );

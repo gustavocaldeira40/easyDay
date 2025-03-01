@@ -1,37 +1,32 @@
 import React from 'react';
-import HomeIcon from '@mui/icons-material/Home';
-import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
+import { FaHome, FaCalendarAlt, FaEllipsisH } from 'react-icons/fa';  // Usando react-icons
+import { useNavigate, useLocation } from 'react-router-dom';
 import { MenuItem, Container } from './style';
-import { useNavigate } from 'react-router-dom';
+
+// Definindo as rotas e ícones dinamicamente
+const menuItems = [
+  { path: '/', label: 'Home', icon: <FaHome /> },
+  { path: '/calendar', label: 'Calendar', icon: <FaCalendarAlt /> },
+];
 
 const Sidebar: React.FC = () => {
-  const themeMenu = {
-    backgroundColor: 'white',
-    margin: '5px 0px',
-    padding: '10px',
-    color: '#8A8F9E',
-  };
-
-
   const navigate = useNavigate();
+  const location = useLocation();
 
+  // Função para verificar se a rota está ativa
+  const isActive = (path: string) => location.pathname === path;
 
   return (
     <Container>
-      <MenuItem
-        style={themeMenu}
-        size="large"
-        onClick={() => navigate('/')}
-      >
-        <HomeIcon />
-      </MenuItem>
-      <MenuItem
-        style={themeMenu}
-        size="large"
-        onClick={() => navigate('/NotFound')}
-      >
-        <CalendarTodayIcon />
-      </MenuItem>
+      {menuItems.map((item) => (
+        <MenuItem
+          key={item.path}
+          onClick={() => navigate(item.path)}
+          isActive={isActive(item.path)}  // Verifica se o item está ativo
+        >
+          {item.icon}
+        </MenuItem>
+      ))}
     </Container>
   );
 };

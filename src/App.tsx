@@ -10,7 +10,8 @@ const App: React.FC = () => {
     <ThemeProvider theme={theme}>
       <GlobalStyle />
       <Router>
-        <div style={{ display: 'flex', height: '100vh' }}> <Sidebar />
+        <div style={{ display: 'flex', height: '100vh' }}>
+          <Sidebar />
           <div
             style={{
               flex: 1,

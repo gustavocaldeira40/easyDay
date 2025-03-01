@@ -6,7 +6,7 @@ import FeedbackCard from '../../components/Cards/Feedback';
 import ScheduleTitle from '../../components/TitleSchedule';
 import TimeSchedule from '../../components/TimeSchedule';
 
-const Home: React.FC = () => {
+const Calendar: React.FC = () => {
   return (
     <ContainerGlobal>
       <ContainerData>
@@ -22,4 +22,4 @@ const Home: React.FC = () => {
   );
 };
 
-export default Home;
+export default Calendar;
