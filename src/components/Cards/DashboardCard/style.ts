@@ -10,8 +10,7 @@ export const CardContainer = styled.div`
   border-radius: 10px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   padding: 30px;
-  /* margin: 5px 10px; */
-  color: #fff;
+  color: ${theme.colors.textLight};
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease;
@@ -46,11 +45,14 @@ export const CardDetails = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
+
+  /* background:red; */
+
 `;
 
 export const DetailLabel = styled.h4`
   font-size: 14px;
   font-weight: bold;
-  color: #f1f1f1;
+  color: ${theme.colors.text};
   margin: 0;
 `;
