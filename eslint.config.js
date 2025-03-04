@@ -25,5 +25,20 @@ export default tseslint.config(
       ],
       '@typescript-eslint/no-unused-vars': 'warn',
     },
+    settings: {
+      'import/resolver': {
+        alias: {
+          map: [
+            ['components', './src/components'],
+            ['assets', './src/assets'],
+            ['pages', './src/pages'],
+            ['routes', './src/routes'],
+            ['services', './src/services'],
+            ['styles', './src/styles'],
+          ],
+          extensions: ['.ts', '.tsx', '.js', '.jsx'],
+        },
+      },
+    },
   },
 );

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { theme } from '../../styles/theme';
 import { ContainerData, ContainerGlobal, ContainerRightSide } from './style';
 import FeedbackCard from '../../components/Cards/Feedback';
 import ScheduleTitle from '../../components/TitleSchedule';
@@ -12,15 +11,13 @@ import { CalendarEventsProps } from '../../interfaces/events';
 import { getEventsFromLocalStorage } from '../../services/localStorageService';
 
 const Calendar: React.FC = () => {
-  //Config of Calendar
+  // Configuração do Calendar
   const [selectedDate, setSelectedDate] = useState<Dayjs>(dayjs());
   const [selectedFilter, setSelectedFilter] = useState<string>('day'); // Filtro selecionado
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
-
-
   const [openModal, setOpenModal] = useState<boolean>(false);
 
-  //Eventos Salvos
+  // Eventos Salvos
   const [appointments, setAppointments] = useState<CalendarEventsProps[]>([]);
 
   const handleDateChange = (date: Dayjs | null) => {
@@ -29,18 +26,14 @@ const Calendar: React.FC = () => {
     }
   };
 
-
-
   const openEventModal = (time: string) => {
+    // Atualiza o selectedTime e garante que o modal seja aberto
     setSelectedTime(time);
-
-    console.log(selectedTime);
-    setOpenModal(true);
   };
 
   const closeEventModal = () => {
     setOpenModal(false);
-    setSelectedTime(null);
+    setSelectedTime(null); // Limpa o selectedTime quando o modal é fechado
   };
 
   const handleSaveModal = ({ title, description, date, time }: CalendarEventsProps) => {
@@ -48,21 +41,26 @@ const Calendar: React.FC = () => {
     setAppointments([...appointments, newAppointment]);
   };
 
-
-  //OnChange of Filter of Screen
-  const onFilterChange = (filter: string) => {
-    setSelectedFilter(filter);
-  };
-
-
-
-  // Get the events
+  // Atualiza a lista de eventos quando o componente é montado
   useEffect(() => {
     const storedEvents = getEventsFromLocalStorage();
     setAppointments(storedEvents);
-
-    console.log('events', storedEvents)
+    console.log('events', storedEvents);
   }, []);
+
+  // UseEffect para abrir o modal quando selectedTime for alterado
+  useEffect(() => {
+    if (selectedTime) {
+      setOpenModal(true);
+
+      console.log('TIME ', selectedTime);
+    }
+  }, [selectedTime]);
+
+  // OnChange do filtro de tela
+  const onFilterChange = (filter: string) => {
+    setSelectedFilter(filter);
+  };
 
 
   return (
@@ -86,7 +84,10 @@ const Calendar: React.FC = () => {
           selectedFilter={selectedFilter}
           onDateChange={handleDateChange}
         />
-        <TimeSchedule selectedDate={selectedDate} onTimeSelect={openEventModal} />
+        <TimeSchedule
+          selectedDate={selectedDate}
+          onTimeSelect={openEventModal}
+        />
 
         {/* Modal para adicionar evento */}
         <EventModal
@@ -96,10 +97,7 @@ const Calendar: React.FC = () => {
           handleSave={handleSaveModal}
           selectedDate={selectedDate}
         />
-
-
       </ContainerRightSide>
-
     </ContainerGlobal>
   );
 };

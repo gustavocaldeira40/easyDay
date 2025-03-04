@@ -7,6 +7,6 @@ export interface EventModalProps {
   onClose: () => void;
   selectedDate: dayjs.Dayjs;
   // setSelectedDate: React.Dispatch<React.SetStateAction<dayjs.Dayjs>>
-  time: string | null;
+  time: string | null  ;
   handleSave: (event: CalendarEventsProps) => void;
 }

@@ -13,7 +13,6 @@ import { TimeScheduleProps } from '../../interfaces/timeSchedule';
 const TimeSchedule: React.FC<TimeScheduleProps> = ({ onTimeSelect }) => {
   return (
     <ContainerGlobal>
-      {/* Exibir os horários de 8h até 20h */}
       <TimeContainer>
         {hours.map((hour) => (
           <TimeSlot key={hour}>

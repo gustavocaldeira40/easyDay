@@ -15,30 +15,28 @@ const EventModal: React.FC<EventModalProps> = ({
 }) => {
   const [eventName, setEventName] = useState<string>('');
   const [description, setDescription] = useState<string>('');
-  const [eventDate, setEventDate] = useState<string>(selectedDate.format('yyyy-MM-dd')); // Agora inicializa com a data recebida
-  const [eventTime, setEventTime] = useState<string>(time || ''); // Inicializa com o valor de time
+  const [eventDate, setEventDate] = useState<string>(selectedDate.format('yyyy-MM-dd'));
 
   const handleSubmit = () => {
-    if (eventName && description && eventDate && eventTime) {
+    if (eventName && description && eventDate && time) {
       const newEvent: CalendarEventsProps = {
         title: eventName,
         description,
         date: eventDate,
-        time: eventTime,
+        time: time,
       };
 
       // Salvar no LocalStorage
       saveEventToLocalStorage(newEvent);
       handleSave(newEvent); // Atualiza o estado no componente pai
 
-      alert(`Evento '${eventName}' adicionado para o horário ${eventTime}`);
+      alert(`Evento '${eventName}' adicionado para o horário ${time}`);
       onClose();
 
       // Limpar os campos
       setEventName('');
       setDescription('');
       setEventDate('');
-      setEventTime('');
     } else {
       alert('Por favor, preencha todos os campos.');
     }
@@ -49,8 +47,8 @@ const EventModal: React.FC<EventModalProps> = ({
     return (
       <ModalContainer>
         <ModalContent>
-          {/* <h3>Adicionar Evento para {eventTime}</h3> */}
-          <h3>Adicionar Evento para {eventTime}</h3>
+          {/* <h3>Adicionar Evento para {time}</h3> */}
+          <h3>Adicionar Evento para {time}</h3>
           <Input
             label="Nome do Evento"
             value={eventName}
@@ -72,8 +70,8 @@ const EventModal: React.FC<EventModalProps> = ({
           <Input
             label="Hora do Evento"
             type="time"
-            value={eventTime}
-            onChange={(e) => setEventTime(e.target.value)}
+            value={time || ''}
+            disabled
           />
 
           <ButtonContainer>

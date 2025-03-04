@@ -9,7 +9,7 @@ const Input: React.FC<InputProps> = ({
   placeholder,
   fullWidth = true,
   multiline = false,
-  rows = 4,
+  rows = 4, ...props
 }) => {
   return (
     <StyledTextField
@@ -23,6 +23,7 @@ const Input: React.FC<InputProps> = ({
       rows={rows}
       variant="outlined"
       margin="normal"
+      {...props}
     />
   );
 };
