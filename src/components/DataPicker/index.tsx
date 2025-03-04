@@ -1,17 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs, { Dayjs } from 'dayjs';
 import { ContainerBackground } from './style';
 
-const DatePickerExample: React.FC = () => {
-  const [selectedDate, setSelectedDate] = useState<Dayjs | null>(dayjs());
+import { DatePickerProps } from '../../interfaces/datePicker';
 
-  const handleDateChange = (newValue: Dayjs | null): void => {
-    setSelectedDate(newValue);
-  };
-
+const DatePickerComponent: React.FC<DatePickerProps> = ({
+  selectedDate,
+  handleDateChange,
+}) => {
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <ContainerBackground>
@@ -32,4 +31,4 @@ const DatePickerExample: React.FC = () => {
   );
 };
 
-export default DatePickerExample;
+export default DatePickerComponent;

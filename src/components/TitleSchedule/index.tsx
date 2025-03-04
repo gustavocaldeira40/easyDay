@@ -9,17 +9,15 @@ import {
   LabelDate,
 } from './style'; // Importando os estilos
 import dayjs from 'dayjs';
+import { ScheduleTitleProps } from '../../interfaces/scheduleTitle';
 
-const ScheduleTitle: React.FC = () => {
-  const [selectedFilter, setSelectedFilter] = useState<string>('day'); // Filtro selecionado
+const ScheduleTitle: React.FC<ScheduleTitleProps> = ({
+  currentDate,
+  onFilterChange,
+  selectedFilter,
+}) => {
 
-  const currentDate = dayjs();
-
-  const formattedDate = currentDate.format('MMMM, YYYY'); // Exemplo: "October, 2020"
-
-  const handleFilterChange = (filter: string) => {
-    setSelectedFilter(filter);
-  };
+  const formattedDate = currentDate.format('MMMM, YYYY');
 
   return (
     <TitleContainer>
@@ -32,13 +30,13 @@ const ScheduleTitle: React.FC = () => {
       <FilterContainer>
         <FilterOption
           selected={selectedFilter === 'day'}
-          onClick={() => handleFilterChange('day')}
+          onClick={() => onFilterChange('day')}
         >
           Day
         </FilterOption>
         <FilterOption
           selected={selectedFilter === 'week'}
-          onClick={() => handleFilterChange('week')}
+          onClick={() => onFilterChange('week')}
         >
           Week
         </FilterOption>

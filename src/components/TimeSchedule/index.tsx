@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   TimeSlot,
   TimeContainer,
@@ -6,76 +6,22 @@ import {
   TimeCell,
   ContainerGlobal,
 } from './style';
-import EventModal from '../Modal';
-import dayjs from 'dayjs';
-import WeeklyDays from '../WeeklyDays';
-import { Appointment } from '../../interfaces/appointment';
 
-const TimeSchedule: React.FC = () => {
-  const [selectedTime, setSelectedTime] = useState<string | null>(null);
-  const [openModal, setOpenModal] = useState<boolean>(false);
+import { hours } from '../../services/generateHours';
+import { TimeScheduleProps } from '../../interfaces/timeSchedule';
 
-  //Eventos Salvos
-  const [appointments, setAppointments] = useState<Appointment[]>([]);
-
-
-  // Horários de 8h até 20h
-  const times = Array.from({ length: 13 }, (_, i) => `${8 + i}:00`);
-
-  const openEventModal = (time: string) => {
-    setSelectedTime(time);
-    setOpenModal(true);
-  };
-
-  const closeEventModal = () => {
-    setOpenModal(false);
-    setSelectedTime(null);
-  };
-
-  const handleSave = (title: string, description: string, date: string) => {
-    const newAppointment: Appointment = { title, description, date };
-    setAppointments([...appointments, newAppointment]);
-  };
-
+const TimeSchedule: React.FC<TimeScheduleProps> = ({ onTimeSelect }) => {
   return (
     <ContainerGlobal>
-      <WeeklyDays />
-
-      {/* Caso Tenha um Evento ja criado */}
-      {/*  <div>
-        {appointments.length > 0 ? (
-          <ul>
-            {appointments.map((appointment, index) => (
-              <li key={index}>
-                <strong>{appointment.title}</strong>
-                <p>{appointment.description}</p>
-                <p>{dayjs(appointment.date).format('DD/MM/YYYY')}</p>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p>Não há compromissos cadastrados.</p>
-        )}
-      </div>
- */}
-
       {/* Exibir os horários de 8h até 20h */}
       <TimeContainer>
-        {times.map((time) => (
-          <TimeSlot key={time}>
-            <TimeLabel>{time}</TimeLabel>
-            <TimeCell onClick={() => openEventModal(time)} />
+        {hours.map((hour) => (
+          <TimeSlot key={hour}>
+            <TimeLabel>{hour}</TimeLabel>
+            <TimeCell onClick={() => onTimeSelect(hour)} />
           </TimeSlot>
         ))}
       </TimeContainer>
-
-      {/* Modal para adicionar evento */}
-      <EventModal
-        open={openModal}
-        onClose={closeEventModal}
-        time={selectedTime}
-
-      />
     </ContainerGlobal>
   );
 };

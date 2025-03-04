@@ -6,7 +6,7 @@ const Header: React.FC = () => {
   return (
     <HeaderContainer>
       <Title>Dashboard de Eventos</Title>
-      <Line />
+      {/* <Line /> */}
     </HeaderContainer>
   );
 };

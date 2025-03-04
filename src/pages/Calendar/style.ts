@@ -21,7 +21,6 @@ export const ContainerData = styled.div`
 
 export const ContainerRightSide = styled.div`
   padding: 0 20px 0 0;
-  /* width: 70%; */
   flex: 1;
   box-sizing: border-box;
 `;
