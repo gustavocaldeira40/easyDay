@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { ContainerData, ContainerGlobal, ContainerRightSide } from './style';
 import FeedbackCard from '../../components/Cards/Feedback';
 import ScheduleTitle from '../../components/TitleSchedule';
@@ -19,7 +19,6 @@ const Calendar: React.FC = () => {
 
   // Eventos Salvos
   const [appointments, setAppointments] = useState<CalendarEventsProps[]>([]);
-  const [filteredAppointments, setFilteredAppointments] = useState<CalendarEventsProps[]>([]);
 
   // Função para filtrar compromissos com base na data
   const filterAppointmentsByDate = (date: Dayjs) => {
@@ -29,9 +28,7 @@ const Calendar: React.FC = () => {
   const handleDateChange = (date: Dayjs | null) => {
     if (date) {
       setSelectedDate(date);
-      // Filtra os compromissos para a nova data selecionada
-      const filtered = filterAppointmentsByDate(date);
-      setFilteredAppointments(filtered);
+
     }
   };
 
@@ -69,11 +66,6 @@ const Calendar: React.FC = () => {
     // Atualiza o estado de compromissos
     setAppointments((prevAppointments) => {
       const updatedAppointments = [...prevAppointments, newAppointment];
-
-      // Filtra os compromissos para o dia selecionado após salvar o novo evento
-      const filtered = filterAppointmentsByDate(selectedDate);
-      setFilteredAppointments(filtered); // Atualiza os compromissos filtrados
-
       return updatedAppointments;
     });
   };
@@ -85,15 +77,17 @@ const Calendar: React.FC = () => {
     setSelectedFilter(filter);
   };
 
-  // UseEffect para carregar eventos do localStorage e filtrar por data selecionada
+
+  // UseEffect para carregar eventos do localStorage apenas uma vez
   useEffect(() => {
     const storedEvents = getEventsFromLocalStorage();
     setAppointments(storedEvents);
+  }, []);
 
-    // Filtra os compromissos para o dia inicial selecionado
-    const filtered = filterAppointmentsByDate(selectedDate);
-    setFilteredAppointments(filtered);
-  }, [filterAppointmentsByDate, selectedDate]);
+  const filteredAppointments = useMemo(() => {
+    return filterAppointmentsByDate(selectedDate);
+  }, [appointments, selectedDate]);
+
 
 
   return (

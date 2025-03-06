@@ -2,12 +2,17 @@ import React from 'react';
 import DashboardCard from '../../components/Cards/DashboardCard';
 import Header from '../../components/Header';
 import { DashboardContainer, CardsContainer } from './style';
-
-import { FaCheck } from 'react-icons/fa';
 import { theme } from '../../styles/theme';
-import { FaRegClock } from 'react-icons/fa';
-import { FaArrowRight } from 'react-icons/fa';
-import { FaCalendarDay } from 'react-icons/fa';
+
+
+
+import { AiOutlineCalendar } from "react-icons/ai";
+import { RiTimeLine } from "react-icons/ri";
+import { HiOutlineArrowNarrowRight } from "react-icons/hi";
+import { FiCheckCircle } from "react-icons/fi";
+
+
+
 
 const Dashboard: React.FC = () => {
   return (
@@ -21,8 +26,8 @@ const Dashboard: React.FC = () => {
             { label: 'Evento 1', value: 'Reunião com a equipe' },
             { label: 'Evento 2', value: 'Almoço com cliente' },
           ]}
-          Icon={FaCalendarDay}
-          colorIcon={theme.colors.hover}
+          Icon={AiOutlineCalendar}
+          colorIcon={theme.colors.primary} //
         />
         <DashboardCard
           title="Eventos Pendentes"
@@ -31,7 +36,7 @@ const Dashboard: React.FC = () => {
             { label: 'Pendência 1', value: 'Aprovação de orçamento' },
             { label: 'Pendência 2', value: 'Feedback do cliente' },
           ]}
-          Icon={FaRegClock}
+          Icon={RiTimeLine}
           colorIcon="#F4E1A1"
         />
         <DashboardCard
@@ -42,7 +47,7 @@ const Dashboard: React.FC = () => {
             { label: 'Data', value: '2025-03-02' },
             { label: 'Horário', value: '10:00 AM' },
           ]}
-          Icon={FaArrowRight}
+          Icon={HiOutlineArrowNarrowRight}
           colorIcon="#D07F6A"
         />
         <DashboardCard
@@ -52,7 +57,7 @@ const Dashboard: React.FC = () => {
             { label: 'Evento 1', value: 'Reunião de planejamento' },
             { label: 'Evento 2', value: 'Workshop de vendas' },
           ]}
-          Icon={FaCheck}
+          Icon={FiCheckCircle}
           colorIcon={theme.colors.success}
         />
       </CardsContainer>

@@ -2,18 +2,21 @@ import styled from 'styled-components';
 import { theme } from '../../../styles/theme';
 
 export const CardContainer = styled.div`
-  background-color: ${theme.colors.background};
+  /* background-color: ${theme.colors.background}; */
+  background-color: #fff;
   width: 40vw;
   /* border: 1px solid #ccc; */
-  height: auto;
+  /* height: auto; */
   /* border-radius:  0px 0px 12px 12px; */
   border-radius: 10px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   padding: 30px;
+  margin: 5px 10px;
   color: ${theme.colors.textLight};
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease;
+
   /* border-radius: 10px; */
   &:hover {
     transform: translateY(-10px);

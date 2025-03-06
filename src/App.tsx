@@ -3,7 +3,7 @@ import GlobalStyle from './styles/global';
 import { theme } from './styles/theme';
 import Sidebar from './components/Menu';
 import MainRoutes from './routes';
-import { BrowserRouter as Router, } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -12,7 +12,7 @@ const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <Router>
+      <BrowserRouter>
         <div style={{ display: 'flex', height: '100vh' }}>
           <Sidebar />
           <div
@@ -24,7 +24,7 @@ const App: React.FC = () => {
             <MainRoutes />
           </div>
         </div>
-      </Router>
+      </BrowserRouter>
 
       <ToastContainer
         position="top-right"
