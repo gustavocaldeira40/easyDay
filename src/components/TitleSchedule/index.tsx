@@ -16,7 +16,6 @@ const ScheduleTitle: React.FC<ScheduleTitleProps> = ({
   onFilterChange,
   selectedFilter,
 }) => {
-
   const formattedDate = currentDate.format('MMMM, YYYY');
 
   return (

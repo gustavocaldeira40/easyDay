@@ -6,10 +6,8 @@ const FeedbackCard: React.FC = () => {
   return (
     <CardContainer>
       <CardContent>
-        <Title>
-          We would love to hear your feedback :)
-        </Title>
-        <BodyText >
+        <Title>We would love to hear your feedback :)</Title>
+        <BodyText>
           It will go take maximun of 2-3 mins and your feedback is appreciated.
         </BodyText>
       </CardContent>

@@ -21,8 +21,8 @@ export const TimeSlot = styled.div`
   align-items: center;
   margin: 5px 0;
   border: 1px solid #dcdcdc;
-border-radius: 10px;
-overflow: hidden;
+  border-radius: 10px;
+  overflow: hidden;
 `;
 
 export const TimeLabel = styled.div`

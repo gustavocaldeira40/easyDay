@@ -3,7 +3,7 @@ import { DayInfoProps } from '../interfaces/days';
 
 export const generateNext7Days = (startDate: dayjs.Dayjs): DayInfoProps[] => {
   const days: DayInfoProps[] = [];
-  
+
   for (let i = 0; i < 7; i++) {
     const day = startDate.add(i, 'day');
     days.push({
@@ -12,7 +12,7 @@ export const generateNext7Days = (startDate: dayjs.Dayjs): DayInfoProps[] => {
       fullDate: day.format('YYYY-MM-DD'),
     });
   }
-  
+
   return days;
 };
 

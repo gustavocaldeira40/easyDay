@@ -1,5 +1,5 @@
-import { useNavigate } from "react-router-dom";
-import { Container, Emoji, GoHomeButton, Text, Title } from "./style";
+import { useNavigate } from 'react-router-dom';
+import { Container, Emoji, GoHomeButton, Text, Title } from './style';
 
 const NotFoundPage = () => {
   const navigate = useNavigate(); // Usando o novo hook 'useNavigate'
@@ -13,8 +13,12 @@ const NotFoundPage = () => {
       <Title>404</Title>
       <Emoji>😞</Emoji>
       <Text>Oops! A página que você procurou não foi encontrada.</Text>
-      <Text>Você pode voltar para a página inicial ou tentar outra página.</Text>
-      <GoHomeButton variant="contained" onClick={goToHome}>Ir para a Página Inicial</GoHomeButton>
+      <Text>
+        Você pode voltar para a página inicial ou tentar outra página.
+      </Text>
+      <GoHomeButton variant="contained" onClick={goToHome}>
+        Ir para a Página Inicial
+      </GoHomeButton>
     </Container>
   );
 };

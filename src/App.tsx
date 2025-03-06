@@ -15,11 +15,11 @@ const App: React.FC = () => {
           <div
             style={{
               flex: 1,
-              padding: '0 0  0 5vw'
+
+              padding: '0 0  0 5vw',
               // paddingLeft: '6%',
             }}
           >
-            {' '}
             <MainRoutes />
           </div>
         </div>

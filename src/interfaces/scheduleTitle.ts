@@ -1,8 +1,7 @@
-import { Dayjs } from "dayjs";
+import { Dayjs } from 'dayjs';
 
 export interface ScheduleTitleProps {
-  currentDate: Dayjs; 
-  selectedFilter: string; 
-  onFilterChange: (filter: string) => void; 
-
+  currentDate: Dayjs;
+  selectedFilter: string;
+  onFilterChange: (filter: string) => void;
 }

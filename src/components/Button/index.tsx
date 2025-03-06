@@ -7,7 +7,8 @@ const CustomButton: React.FC<ButtonProps> = ({
   onClick,
   color = 'primary',
   variant = 'contained',
-  fullWidth = true, ...props
+  fullWidth = true,
+  ...props
 }) => {
   return (
     <StyledButton
@@ -15,7 +16,6 @@ const CustomButton: React.FC<ButtonProps> = ({
       variant={variant}
       onClick={onClick}
       fullWidth={fullWidth}
-
       {...props}
     >
       {label}

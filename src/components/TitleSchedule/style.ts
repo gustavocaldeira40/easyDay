@@ -28,11 +28,11 @@ export const FilterContainer = styled.div`
 `;
 
 export const LabelDate = styled.h2`
-  text-transform: uppercase;  
-  font-size: 20px;            
-  font-weight: bold;          
-  color: #333;                
-  text-align: center;         
+  text-transform: uppercase;
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
   /* padding: 10px;               */
 `;
 

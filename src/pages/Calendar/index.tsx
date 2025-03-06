@@ -14,7 +14,7 @@ const Calendar: React.FC = () => {
   // Configuração do Calendar
   const [selectedDate, setSelectedDate] = useState<Dayjs>(dayjs());
   const [selectedFilter, setSelectedFilter] = useState<string>('day'); // Filtro selecionado
-  const [selectedTime, setSelectedTime] = useState<string | null>(null);
+  const [selectedTime, setSelectedTime] = useState<string>('');
   const [openModal, setOpenModal] = useState<boolean>(false);
 
   // Eventos Salvos
@@ -27,17 +27,35 @@ const Calendar: React.FC = () => {
   };
 
   const openEventModal = (time: string) => {
+    // Formatar o time para garantir que tenha dois dígitos
+    const formattedTime = dayjs(time, 'HH:mm').format('HH:mm');
+
     // Atualiza o selectedTime e garante que o modal seja aberto
-    setSelectedTime(time);
+    console.log('selecionado horario ', formattedTime);
+    setSelectedTime(formattedTime);
+
+    if (formattedTime) {
+      setOpenModal(true);
+    }
   };
 
   const closeEventModal = () => {
     setOpenModal(false);
-    setSelectedTime(null); // Limpa o selectedTime quando o modal é fechado
+    setSelectedTime(''); // Limpa o selectedTime quando o modal é fechado
   };
 
-  const handleSaveModal = ({ title, description, date, time }: CalendarEventsProps) => {
-    const newAppointment: CalendarEventsProps = { title, description, date, time };
+  const handleSaveModal = ({
+    title,
+    description,
+    date,
+    time,
+  }: CalendarEventsProps) => {
+    const newAppointment: CalendarEventsProps = {
+      title,
+      description,
+      date,
+      time,
+    };
     setAppointments([...appointments, newAppointment]);
   };
 
@@ -48,20 +66,11 @@ const Calendar: React.FC = () => {
     console.log('events', storedEvents);
   }, []);
 
-  // UseEffect para abrir o modal quando selectedTime for alterado
-  useEffect(() => {
-    if (selectedTime) {
-      setOpenModal(true);
 
-      console.log('TIME ', selectedTime);
-    }
-  }, [selectedTime]);
-
-  // OnChange do filtro de tela
+  // OnChange of filter of screen
   const onFilterChange = (filter: string) => {
     setSelectedFilter(filter);
   };
-
 
   return (
     <ContainerGlobal>
@@ -89,7 +98,6 @@ const Calendar: React.FC = () => {
           onTimeSelect={openEventModal}
         />
 
-        {/* Modal para adicionar evento */}
         <EventModal
           open={openModal}
           onClose={closeEventModal}

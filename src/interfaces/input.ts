@@ -11,4 +11,4 @@ export type InputProps = {
   fullWidth?: boolean;
   multiline?: boolean;
   rows?: number;
-} & TextFieldProps
+} & TextFieldProps;

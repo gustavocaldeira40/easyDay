@@ -71,7 +71,9 @@ export const ButtonCancel = styled.button`
   font-size: 16px;
   cursor: pointer;
   border-radius: 5px;
-  transition: background-color 0.3s, border-color 0.3s;
+  transition:
+    background-color 0.3s,
+    border-color 0.3s;
   align-self: flex-start; /* Alinha o botão à esquerda */
 
   &:hover {

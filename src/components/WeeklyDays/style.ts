@@ -17,7 +17,10 @@ export const DayLabel = styled.div<{ isSelected: boolean; typeLabel: string }>`
   font-size: ${({ typeLabel }) => (typeLabel === 'week' ? '18px' : '14px')};
   font-weight: ${({ isSelected, typeLabel }) =>
     isSelected && typeLabel === 'week' ? 'bold' : 'normal'};
-  color: ${({ isSelected }) => (isSelected ? '#fff' : '#000')}; /* Modificado: Adicionando cor para destacar o texto */
+  color: ${({ isSelected }) =>
+    isSelected
+      ? '#fff'
+      : '#000'}; /* Modificado: Adicionando cor para destacar o texto */
 `;
 
 export const DayCell = styled.div<{ isSelected: boolean; isDisabled: boolean }>`
@@ -31,8 +34,14 @@ export const DayCell = styled.div<{ isSelected: boolean; isDisabled: boolean }>`
   background-color: ${({ isSelected }) =>
     isSelected ? theme.colors.primary : theme.colors.background};
   color: ${({ isSelected }) => (isSelected ? '#fff' : '#000')};
-  cursor: ${({ isDisabled }) => (isDisabled ? 'not-allowed' : 'pointer')}; /* Modificado: Altera o cursor para 'not-allowed' quando desabilitado */
-  opacity: ${({ isDisabled }) => (isDisabled ? 0.4 : 1)}; /* Modificado: Reduz a opacidade quando desabilitado */
+  cursor: ${({ isDisabled }) =>
+    isDisabled
+      ? 'not-allowed'
+      : 'pointer'}; /* Modificado: Altera o cursor para 'not-allowed' quando desabilitado */
+  opacity: ${({ isDisabled }) =>
+    isDisabled
+      ? 0.4
+      : 1}; /* Modificado: Reduz a opacidade quando desabilitado */
   transition: background-color 0.3s ease;
 
   &:hover {

@@ -5,17 +5,20 @@ import { CalendarEventsProps } from '../../interfaces/events';
 import { saveEventToLocalStorage } from '../../services/localStorageService';
 import CustomButton from '../Button';
 import Input from '../Input';
+import { theme } from '../../styles/theme';
 
 const EventModal: React.FC<EventModalProps> = ({
   open,
   onClose,
   time,
   handleSave,
-  selectedDate
+  selectedDate,
 }) => {
   const [eventName, setEventName] = useState<string>('');
   const [description, setDescription] = useState<string>('');
-  const [eventDate, setEventDate] = useState<string>(selectedDate.format('yyyy-MM-dd'));
+  const [eventDate, setEventDate] = useState<string>(
+    selectedDate.format('yyyy-MM-dd'),
+  );
 
   const handleSubmit = () => {
     if (eventName && description && eventDate && time) {
@@ -43,12 +46,10 @@ const EventModal: React.FC<EventModalProps> = ({
   };
 
   if (open)
-
     return (
       <ModalContainer>
         <ModalContent>
-          {/* <h3>Adicionar Evento para {time}</h3> */}
-          <h3>Adicionar Evento para {time}</h3>
+          <h3 style={{ textAlign: 'center' }}>Adicionar Evento para {time}</h3>
           <Input
             label="Nome do Evento"
             value={eventName}
@@ -67,16 +68,23 @@ const EventModal: React.FC<EventModalProps> = ({
             value={eventDate}
             onChange={(e) => setEventDate(e.target.value)}
           />
-          <Input
-            label="Hora do Evento"
-            type="time"
-            value={time || ''}
-            disabled
-          />
+          <Input label="" type="time" value={time} disabled />
 
           <ButtonContainer>
-            <CustomButton label="Cancelar" onClick={onClose} color="secondary" variant="outlined" />
-            <CustomButton label="Salvar" onClick={handleSubmit} color="primary" />
+            <CustomButton
+              label="Cancelar"
+              onClick={onClose}
+              color="primary"
+              style={{
+                border: `1px solid ${theme.colors.hover}`,
+              }}
+              variant="text"
+            />
+            <CustomButton
+              label="Salvar"
+              onClick={handleSubmit}
+              color="primary"
+            />
           </ButtonContainer>
         </ModalContent>
       </ModalContainer>

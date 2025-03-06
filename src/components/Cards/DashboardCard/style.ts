@@ -47,7 +47,6 @@ export const CardDetails = styled.div`
   gap: 10px;
 
   /* background:red; */
-
 `;
 
 export const DetailLabel = styled.h4`

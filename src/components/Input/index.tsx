@@ -1,5 +1,5 @@
-import { InputProps } from "../../interfaces/input";
-import { StyledTextField } from "./style";
+import { InputProps } from '../../interfaces/input';
+import { StyledTextField } from './style';
 
 const Input: React.FC<InputProps> = ({
   label,
@@ -9,7 +9,8 @@ const Input: React.FC<InputProps> = ({
   placeholder,
   fullWidth = true,
   multiline = false,
-  rows = 4, ...props
+  rows = 4,
+  ...props
 }) => {
   return (
     <StyledTextField

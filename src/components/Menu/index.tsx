@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaHome, FaCalendarAlt, FaEllipsisH } from 'react-icons/fa';  // Usando react-icons
+import { FaHome, FaCalendarAlt, FaEllipsisH } from 'react-icons/fa'; // Usando react-icons
 import { useNavigate, useLocation } from 'react-router-dom';
 import { MenuItem, Container } from './style';
 
@@ -22,7 +22,7 @@ const Sidebar: React.FC = () => {
         <MenuItem
           key={item.path}
           onClick={() => navigate(item.path)}
-          isActive={isActive(item.path)}  // Verifica se o item está ativo
+          isActive={isActive(item.path)} // Verifica se o item está ativo
         >
           {item.icon}
         </MenuItem>

@@ -3,11 +3,11 @@ import DashboardCard from '../../components/Cards/DashboardCard';
 import Header from '../../components/Header';
 import { DashboardContainer, CardsContainer } from './style';
 
-import { FaCheck } from "react-icons/fa";
+import { FaCheck } from 'react-icons/fa';
 import { theme } from '../../styles/theme';
-import { FaRegClock } from "react-icons/fa";
+import { FaRegClock } from 'react-icons/fa';
 import { FaArrowRight } from 'react-icons/fa';
-import { FaCalendarDay } from "react-icons/fa";
+import { FaCalendarDay } from 'react-icons/fa';
 
 const Dashboard: React.FC = () => {
   return (
@@ -32,7 +32,7 @@ const Dashboard: React.FC = () => {
             { label: 'Pendência 2', value: 'Feedback do cliente' },
           ]}
           Icon={FaRegClock}
-          colorIcon='#F4E1A1'
+          colorIcon="#F4E1A1"
         />
         <DashboardCard
           title="Próximos Eventos"
@@ -43,7 +43,7 @@ const Dashboard: React.FC = () => {
             { label: 'Horário', value: '10:00 AM' },
           ]}
           Icon={FaArrowRight}
-          colorIcon='#D07F6A'
+          colorIcon="#D07F6A"
         />
         <DashboardCard
           title="Eventos Concluídos"
