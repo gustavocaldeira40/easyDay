@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ModalContainer, ModalContent, ButtonContainer } from './style';
 import { EventModalProps } from '../../interfaces/modal';
 import { CalendarEventsProps } from '../../interfaces/events';
@@ -6,6 +6,7 @@ import { saveEventToLocalStorage } from '../../services/localStorageService';
 import CustomButton from '../Button';
 import Input from '../Input';
 import { theme } from '../../styles/theme';
+import { toast } from 'react-toastify';
 
 const EventModal: React.FC<EventModalProps> = ({
   open,
@@ -16,9 +17,8 @@ const EventModal: React.FC<EventModalProps> = ({
 }) => {
   const [eventName, setEventName] = useState<string>('');
   const [description, setDescription] = useState<string>('');
-  const [eventDate, setEventDate] = useState<string>(
-    selectedDate.format('yyyy-MM-dd'),
-  );
+  const [eventDate, setEventDate] = useState<string>(selectedDate.format('YYYY-MM-DD'));
+
 
   const handleSubmit = () => {
     if (eventName && description && eventDate && time) {
@@ -33,7 +33,7 @@ const EventModal: React.FC<EventModalProps> = ({
       saveEventToLocalStorage(newEvent);
       handleSave(newEvent); // Atualiza o estado no componente pai
 
-      alert(`Evento '${eventName}' adicionado para o horário ${time}`);
+      toast.success(`Evento '${eventName}' adicionado para o horário ${time}`);
       onClose();
 
       // Limpar os campos
@@ -41,15 +41,21 @@ const EventModal: React.FC<EventModalProps> = ({
       setDescription('');
       setEventDate('');
     } else {
-      alert('Por favor, preencha todos os campos.');
+      toast.error('Por favor, preencha todos os campos.');
     }
   };
+
+  // Upgrade the date 
+  useEffect(() => {
+    setEventDate(selectedDate.format('YYYY-MM-DD'));
+  }, [selectedDate]);
+
 
   if (open)
     return (
       <ModalContainer>
         <ModalContent>
-          <h3 style={{ textAlign: 'center' }}>Adicionar Evento para {time}</h3>
+          <h3 >Adicionar Evento para {time}</h3>
           <Input
             label="Nome do Evento"
             value={eventName}
@@ -63,12 +69,12 @@ const EventModal: React.FC<EventModalProps> = ({
             rows={4}
           />
           <Input
-            label="Data do Evento"
             type="date"
+            disabled
             value={eventDate}
             onChange={(e) => setEventDate(e.target.value)}
           />
-          <Input label="" type="time" value={time} disabled />
+          <Input type="time" value={time} disabled />
 
           <ButtonContainer>
             <CustomButton

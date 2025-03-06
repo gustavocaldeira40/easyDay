@@ -1,6 +1,7 @@
 import { Dayjs } from 'dayjs';
+import { CalendarEventsProps } from './events';
 
 export interface TimeScheduleProps {
-  selectedDate: Dayjs;
   onTimeSelect: (time: string) => void;
+  appointments: CalendarEventsProps[];
 }

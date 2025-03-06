@@ -19,10 +19,19 @@ const Calendar: React.FC = () => {
 
   // Eventos Salvos
   const [appointments, setAppointments] = useState<CalendarEventsProps[]>([]);
+  const [filteredAppointments, setFilteredAppointments] = useState<CalendarEventsProps[]>([]);
+
+  // Função para filtrar compromissos com base na data
+  const filterAppointmentsByDate = (date: Dayjs) => {
+    return appointments.filter((appointment) => dayjs(appointment.date).isSame(date, 'day'));
+  };
 
   const handleDateChange = (date: Dayjs | null) => {
     if (date) {
       setSelectedDate(date);
+      // Filtra os compromissos para a nova data selecionada
+      const filtered = filterAppointmentsByDate(date);
+      setFilteredAppointments(filtered);
     }
   };
 
@@ -56,21 +65,36 @@ const Calendar: React.FC = () => {
       date,
       time,
     };
-    setAppointments([...appointments, newAppointment]);
+
+    // Atualiza o estado de compromissos
+    setAppointments((prevAppointments) => {
+      const updatedAppointments = [...prevAppointments, newAppointment];
+
+      // Filtra os compromissos para o dia selecionado após salvar o novo evento
+      const filtered = filterAppointmentsByDate(selectedDate);
+      setFilteredAppointments(filtered); // Atualiza os compromissos filtrados
+
+      return updatedAppointments;
+    });
   };
 
-  // Atualiza a lista de eventos quando o componente é montado
-  useEffect(() => {
-    const storedEvents = getEventsFromLocalStorage();
-    setAppointments(storedEvents);
-    console.log('events', storedEvents);
-  }, []);
 
 
   // OnChange of filter of screen
   const onFilterChange = (filter: string) => {
     setSelectedFilter(filter);
   };
+
+  // UseEffect para carregar eventos do localStorage e filtrar por data selecionada
+  useEffect(() => {
+    const storedEvents = getEventsFromLocalStorage();
+    setAppointments(storedEvents);
+
+    // Filtra os compromissos para o dia inicial selecionado
+    const filtered = filterAppointmentsByDate(selectedDate);
+    setFilteredAppointments(filtered);
+  }, [filterAppointmentsByDate, selectedDate]);
+
 
   return (
     <ContainerGlobal>
@@ -94,7 +118,7 @@ const Calendar: React.FC = () => {
           onDateChange={handleDateChange}
         />
         <TimeSchedule
-          selectedDate={selectedDate}
+          appointments={filteredAppointments}
           onTimeSelect={openEventModal}
         />
 

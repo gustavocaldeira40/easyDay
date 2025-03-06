@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 import { theme } from '../../styles/theme';
 
+interface TimeCellProps {
+  isOccupied: boolean;
+}
+
+
 export const ContainerGlobal = styled.div`
   background-color: #fff;
   margin: 10px 0;
@@ -32,16 +37,16 @@ export const TimeLabel = styled.div`
   color: #333;
 `;
 
-export const TimeCell = styled.div`
+export const TimeCell = styled.div<TimeCellProps>`
   flex: 1;
   height: 60px;
-  background-color: #f4f4f4;
+  background-color: ${({ isOccupied }) => (isOccupied ? '#f5a623' : '#f4f4f4')};  // Altera a cor se ocupado
   border-radius: 10px;
-  /* border: 1px solid #ddd; */
-  cursor: pointer;
+  cursor: ${({ isOccupied }) => (isOccupied ? 'not-allowed' : 'pointer')}; // Desabilita o clique se ocupado
 
   &:hover {
-    background-color: ${theme.colors.hover};
+    background-color: ${({ isOccupied }) =>
+      isOccupied ? '#f5a623' : theme.colors.hover}; // Hover normal se não ocupado
     transition: background-color 0.5s;
   }
 `;

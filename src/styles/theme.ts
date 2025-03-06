@@ -4,7 +4,9 @@ export const theme = {
     background: '#f9f9f9',
     text: '#333333',
     textLight: '#666666',
-    success: '#4caf50',
+    success: '#65E04D',
+    error: '#D23434',
+
     hover: 'rgba(63, 81, 181, 0.5)',
   },
   typography: {

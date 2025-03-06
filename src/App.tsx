@@ -3,7 +3,10 @@ import GlobalStyle from './styles/global';
 import { theme } from './styles/theme';
 import Sidebar from './components/Menu';
 import MainRoutes from './routes';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const App: React.FC = () => {
   return (
@@ -15,15 +18,25 @@ const App: React.FC = () => {
           <div
             style={{
               flex: 1,
-
               padding: '0 0  0 5vw',
-              // paddingLeft: '6%',
             }}
           >
             <MainRoutes />
           </div>
         </div>
       </Router>
+
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable />
+
+
     </ThemeProvider>
   );
 };
