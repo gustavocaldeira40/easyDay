@@ -6,4 +6,6 @@ export interface DashboardCardProps {
   details: Array<{ label: string; value: string }>;
   Icon: IconType;
   colorIcon: string;
+onClick: () => void;
 }
+

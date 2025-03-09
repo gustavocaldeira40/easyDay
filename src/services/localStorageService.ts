@@ -1,6 +1,6 @@
 // services/localStorage.ts
 
-import { CalendarEventsProps } from '../interfaces/events';
+import { CalendarEventsProps } from '../interfaces/calendar';
 
 // Função para obter eventos do LocalStorage
 export const getEventsFromLocalStorage = (): CalendarEventsProps[] => {

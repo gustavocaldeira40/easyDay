@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import { CalendarEventsProps } from './events';
+import { CalendarEventsProps } from './calendar';
 
 export interface EventModalProps {
   open: boolean;

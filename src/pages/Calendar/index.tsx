@@ -7,7 +7,7 @@ import dayjs, { Dayjs } from 'dayjs';
 import DatePickerComponent from '../../components/DataPicker';
 import WeeklyDays from '../../components/WeeklyDays';
 import EventModal from '../../components/Modal';
-import { CalendarEventsProps } from '../../interfaces/events';
+import { CalendarEventsProps } from '../../interfaces/calendar';
 import { getEventsFromLocalStorage } from '../../services/localStorageService';
 
 const Calendar: React.FC = () => {
@@ -39,6 +39,9 @@ const Calendar: React.FC = () => {
     // Atualiza o selectedTime e garante que o modal seja aberto
     console.log('selecionado horario ', formattedTime);
     setSelectedTime(formattedTime);
+
+
+    console.log("DATTA SELECIONADA ", selectedDate.format('DD/MM/YYYY'));
 
     if (formattedTime) {
       setOpenModal(true);
@@ -82,7 +85,7 @@ const Calendar: React.FC = () => {
   useEffect(() => {
     const storedEvents = getEventsFromLocalStorage();
     setAppointments(storedEvents);
-  }, []);
+  }, []); // Só executa uma vez quando o componente for montado
 
   const filteredAppointments = useMemo(() => {
     return filterAppointmentsByDate(selectedDate);

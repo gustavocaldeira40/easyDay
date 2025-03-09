@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ModalContainer, ModalContent, ButtonContainer } from './style';
 import { EventModalProps } from '../../interfaces/modal';
-import { CalendarEventsProps } from '../../interfaces/events';
+import { CalendarEventsProps } from '../../interfaces/calendar';
 import { saveEventToLocalStorage } from '../../services/localStorageService';
 import CustomButton from '../Button';
 import Input from '../Input';
@@ -29,9 +29,9 @@ const EventModal: React.FC<EventModalProps> = ({
         time: time,
       };
 
-      // Salvar no LocalStorage
+
       saveEventToLocalStorage(newEvent);
-      handleSave(newEvent); // Atualiza o estado no componente pai
+      handleSave(newEvent);
 
       toast.success(`Evento '${eventName}' adicionado para o horário ${time}`);
       onClose();
@@ -47,8 +47,12 @@ const EventModal: React.FC<EventModalProps> = ({
 
   // Upgrade the date 
   useEffect(() => {
-    setEventDate(selectedDate.format('YYYY-MM-DD'));
-  }, [selectedDate]);
+
+    if (selectedDate) {
+      setEventDate(selectedDate.format('YYYY-MM-DD'));
+
+    }
+  }, [eventDate, selectedDate]);
 
 
   if (open)
