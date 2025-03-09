@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
+import React, { createContext, useState, ReactNode, useEffect } from 'react';
 import { CalendarEventsProps } from '../interfaces/calendar';
 import { AppointmentsContextType } from '../interfaces/appointmentsContext';
 
@@ -41,7 +41,7 @@ export const AppointmentsProvider: React.FC<AppointmentsProviderProps> = ({ chil
   }, []);
 
   return (
-    <AppointmentsContext.Provider value={{ appointments, addAppointment, removeAppointment, setAppointments }}>
+    <AppointmentsContext.Provider value={{ appointments, addAppointment, removeAppointment }}>
       {children}
     </AppointmentsContext.Provider>
   );
